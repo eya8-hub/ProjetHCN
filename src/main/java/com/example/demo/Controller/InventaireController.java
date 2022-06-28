@@ -36,7 +36,7 @@ public class InventaireController {
 	 @PostMapping("/create")
 	  public ResponseEntity<Inventaire> createTutorial(@RequestBody Inventaire inventaire) {
 	    try {
-	      Inventaire _inventaire = inventaireRepository.save(new Inventaire(inventaire.getReference(), inventaire.getMarque(),inventaire.getNumSerie(),inventaire.getType(),inventaire.getDateAquis(),inventaire.getDateMEP(),inventaire.getDateFinAquis(),inventaire.getAccessoire(), inventaire.getUtilisation()));
+	      Inventaire _inventaire = inventaireRepository.save(new Inventaire(inventaire.getId(),inventaire.getReference(), inventaire.getMarque(),inventaire.getNumSerie(),inventaire.getType(),inventaire.getDateAquis(),inventaire.getDateMEP(),inventaire.getDateFinAquis(),inventaire.getAccessoire(), inventaire.getUtilisation()));
 	      return new ResponseEntity<>(_inventaire, HttpStatus.CREATED);
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -61,36 +61,36 @@ public class InventaireController {
 	  }
 	 
 //	 ///////////modifier inventaire
-//	 @PutMapping("/inventaire/{id}")
-//	  public ResponseEntity<Inventaire> updateInventaire(@PathVariable("id") String id, @RequestBody Inventaire inventaire) {
-//	    Optional<Inventaire> inventaireData = inventaireRepository.findById(id);
-//	    if (inventaireData.isPresent()) {
-//	      Inventaire _inventaire = inventaireData.get();
-//	     /* _inventaire.setReference(inventaire.getReference());*/
-//	      _inventaire.setAccessoire(inventaire.getAccessoire());
-//	      _inventaire.setDateAquis(inventaire.getDateAquis());
-//	      _inventaire.setDateFinAquis(inventaire.getDateFinAquis());
-//	      _inventaire.setDateMEP(inventaire.getDateMEP());
-//	      _inventaire.setMarque(inventaire.getMarque());
-//	      _inventaire.setNumSerie(inventaire.getNumSerie());
-//	      _inventaire.setUtilisation(inventaire.getUtilisation());
-//	      
-//	      return new ResponseEntity<>(inventaireRepository.save(_inventaire), HttpStatus.OK);
-//	    } else {
-//	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//	    }
-//	  }
-//	 
-//	 
+	 @PutMapping("/modifier/{id}")
+	  public ResponseEntity<Inventaire> updateInventaire(@PathVariable("id") String id, @RequestBody Inventaire inventaire) {
+	    Optional<Inventaire> inventaireData = inventaireRepository.findById(id);
+	    if (inventaireData.isPresent()) {
+	      Inventaire _inventaire = inventaireData.get();
+	      _inventaire.setReference(inventaire.getReference());
+	      _inventaire.setAccessoire(inventaire.getAccessoire());
+	      _inventaire.setDateAquis(inventaire.getDateAquis());
+	      _inventaire.setDateFinAquis(inventaire.getDateFinAquis());
+	      _inventaire.setDateMEP(inventaire.getDateMEP());
+	      _inventaire.setMarque(inventaire.getMarque());
+	      _inventaire.setNumSerie(inventaire.getNumSerie());
+	      _inventaire.setUtilisation(inventaire.getUtilisation());
+	      
+	      return new ResponseEntity<>(inventaireRepository.save(_inventaire), HttpStatus.OK);
+	    } else {
+	      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	  }
+	 
+	 
 //	//////////////////// supprimer inventaire 
-//	 @DeleteMapping("/inventaires/{id}")
-//	  public ResponseEntity<HttpStatus> deleteInventaire(@PathVariable("id") String reference) {
-//	    try {
-//	      inventaireRepository.deleteById(reference);
-//	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//	    } catch (Exception e) {
-//	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//	    }
-//	  }
+	 @DeleteMapping("/supprimer/{id}")
+	  public ResponseEntity<HttpStatus> deleteInventaire(@PathVariable("id") String reference) {
+	    try {
+	      inventaireRepository.deleteById(reference);
+	      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	    } catch (Exception e) {
+	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	  }
 
 }

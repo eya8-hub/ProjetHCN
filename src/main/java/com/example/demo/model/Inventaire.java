@@ -6,7 +6,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection ="Inventaire")
 public class Inventaire {
-	@Id
+	@Id 
+	private String id;
 	private String reference;
 	private String type;
 	private  String marque;
@@ -19,9 +20,10 @@ public class Inventaire {
 	public Inventaire(){
 		
 		}
-	public Inventaire(String reference, String type, String marque, String numSerie, Date dateAquis, Date dateMEP,
+	public Inventaire(String id,String reference, String type, String marque, String numSerie, Date dateAquis, Date dateMEP,
 			Date dateFinAquis, String accessoire, Utilisation utilisation) {
 		super();
+		this.id = id;
 		this.reference = reference;
 		this.type = type;
 		this.marque = marque;
@@ -34,6 +36,12 @@ public class Inventaire {
 	}
 	public String getReference() {
 		return reference;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public void setReference(String reference) {
 		this.reference = reference;
@@ -88,10 +96,11 @@ public class Inventaire {
 	}
 	@Override
 	public String toString() {
-		return "Inventaire [reference=" + reference + ", type=" + type + ", marque=" + marque + ", numSerie=" + numSerie
-				+ ", dateAquis=" + dateAquis + ", dateMEP=" + dateMEP + ", dateFinAquis=" + dateFinAquis
-				+ ", accessoire=" + accessoire + ", utilisation=" + utilisation + "]";
+		return "Inventaire [id=" + id + ", reference=" + reference + ", type=" + type + ", marque=" + marque
+				+ ", numSerie=" + numSerie + ", dateAquis=" + dateAquis + ", dateMEP=" + dateMEP + ", dateFinAquis="
+				+ dateFinAquis + ", accessoire=" + accessoire + ", utilisation=" + utilisation + "]";
 	}
+	
 
 	
 	
