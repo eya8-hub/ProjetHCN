@@ -36,7 +36,7 @@ public class InventaireController {
 	 @PostMapping("/create")
 	  public ResponseEntity<Inventaire> createTutorial(@RequestBody Inventaire inventaire) {
 	    try {
-	      Inventaire _inventaire = inventaireRepository.save(new Inventaire(inventaire.getId(),inventaire.getReference(), inventaire.getMarque(),inventaire.getNumSerie(),inventaire.getType(),inventaire.getDateAquis(),inventaire.getDateMEP(),inventaire.getDateFinAquis(),inventaire.getAccessoire(), inventaire.getUtilisation()));
+	      Inventaire _inventaire = inventaireRepository.save(new Inventaire(inventaire.getId(),inventaire.getReference(),inventaire.getType(),inventaire.getMarque(),inventaire.getNumSerie(),inventaire.getDateAquis(),inventaire.getDateMEP(),inventaire.getDateFinAquis(),inventaire.getAccessoire(),inventaire.getUtilisation()));
 	      return new ResponseEntity<>(_inventaire, HttpStatus.CREATED);
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -9,7 +9,7 @@ public class Inventaire {
 	@Id 
 	private String id;
 	private String reference;
-	private String type;
+	private Type type;
 	private  String marque;
 	private String numSerie;
 	private Date dateAquis;
@@ -20,8 +20,8 @@ public class Inventaire {
 	public Inventaire(){
 		
 		}
-	public Inventaire(String id,String reference, String type, String marque, String numSerie, Date dateAquis, Date dateMEP,
-			Date dateFinAquis, String accessoire, Utilisation utilisation) {
+	public Inventaire(String id,String reference, Type type, String marque, String numSerie, Date dateAquis, Date dateMEP,
+			Date dateFinAquis, String accessoire,Utilisation utilisation) {
 		super();
 		this.id = id;
 		this.reference = reference;
@@ -46,10 +46,11 @@ public class Inventaire {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
-	public String getType() {
+	
+	public Type getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 	public String getMarque() {
