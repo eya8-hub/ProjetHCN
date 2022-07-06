@@ -31,7 +31,7 @@ public class MaintenanceCurController {
 @PostMapping("/create")
 public ResponseEntity<MaintenanceCurative> createMC(@RequestBody MaintenanceCurative maintenanceCurative) {
 try {
-	MaintenanceCurative _maintenanceCurative = maintenanceCurRepository.save(new MaintenanceCurative(maintenanceCurative.getFournisseur(),maintenanceCurative.getNaturePanne(),maintenanceCurative.getDecision(),maintenanceCurative.getDescription()));
+	MaintenanceCurative _maintenanceCurative = maintenanceCurRepository.save(new MaintenanceCurative(maintenanceCurative.getId(),maintenanceCurative.getDateMaintenace(),maintenanceCurative.getNatureMaintenace(),maintenanceCurative.getInventaire(),maintenanceCurative.getFournisseur(),maintenanceCurative.getNaturePanne(),maintenanceCurative.getDecision(),maintenanceCurative.getDescription()));
  return new ResponseEntity<>(_maintenanceCurative, HttpStatus.CREATED);
 } catch (Exception e) {
  return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -60,6 +60,10 @@ public ResponseEntity<MaintenanceCurative> updateTutorial(@PathVariable("id") St
   Optional<MaintenanceCurative> tutorialData = maintenanceCurRepository.findById(id);
   if (tutorialData.isPresent()) {
     MaintenanceCurative _Maincur = tutorialData.get();
+    _Maincur.setId(MainCur.getId());
+    _Maincur.setDateMaintenace(MainCur.getDateMaintenace());
+    _Maincur.setNatureMaintenace(MainCur.getNatureMaintenace());
+    _Maincur.setInventaire(MainCur.getInventaire());
     _Maincur.setFournisseur(MainCur.getFournisseur());
     _Maincur.setNaturePanne(MainCur.getNaturePanne());
     _Maincur.setDecision(MainCur.getDecision());
