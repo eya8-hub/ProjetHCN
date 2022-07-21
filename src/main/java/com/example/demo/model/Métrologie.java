@@ -11,19 +11,21 @@ public class Métrologie {
 	private Date DateMetrologie;
 	private Date DateProchaineMetrologie;
 	private String Description;
-	
+    private boolean published;
+
 	
 	public Métrologie() {
 		
 	}
 	public Métrologie(String id, Inventaire inventaire, Date dateMetrologie, Date dateProchaineMetrologie,
-			String description) {
+			String description ,Boolean published) {
 		
 		this.id = id;
 		this.inventaire = inventaire;
 		DateMetrologie = dateMetrologie;
 		DateProchaineMetrologie = dateProchaineMetrologie;
 		Description = description;
+		this.published=published;
 	}
 	public String getId() {
 		return id;
@@ -55,10 +57,11 @@ public class Métrologie {
 	public void setDescription(String description) {
 		Description = description;
 	}
-	@Override
-	public String toString() {
-		return "Métrologie [id=" + id + ", inventaire=" + inventaire + ", DateMetrologie=" + DateMetrologie
-				+ ", DateProchaineMetrologie=" + DateProchaineMetrologie + ", Description=" + Description + "]";
+	public boolean isPublished() {
+		return published;
+	}
+	public void setPublished(boolean published) {
+		this.published = published;
 	}
 	
 

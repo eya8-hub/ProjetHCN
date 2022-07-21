@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Inventaire;
 import com.example.demo.model.Métrologie;
 import com.example.demo.repository.MetrologieRepository;
+import com.example.demo.service.CSVService;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -28,13 +29,14 @@ import com.example.demo.repository.MetrologieRepository;
 public class MétrologieController {
 	 @Autowired
 	  MetrologieRepository metrologieRepository;
-
+	  CSVService fileService;
+	  
 	 /////////////// ajouter metrologie
 	 
 	 @PostMapping("/create")
 	  public ResponseEntity<Métrologie> createMetrologie(@RequestBody Métrologie metrologie) {
 	    try {
-	      Métrologie _metrologie = metrologieRepository.save(new Métrologie(metrologie.getId(),metrologie.getInventaire(),metrologie.getDateMetrologie(),metrologie.getDateProchaineMetrologie(),metrologie.getDescription()));
+	      Métrologie _metrologie = metrologieRepository.save(new Métrologie(metrologie.getId(),metrologie.getInventaire(),metrologie.getDateMetrologie(),metrologie.getDateProchaineMetrologie(),metrologie.getDescription(),true));
 	      return new ResponseEntity<>(_metrologie, HttpStatus.CREATED);
 	    } catch (Exception e) {
 	      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -69,6 +71,8 @@ public class MétrologieController {
 	      _metrologie.setDateMetrologie(metrologie.getDateMetrologie());
 	      _metrologie.setDateProchaineMetrologie(metrologie.getDateProchaineMetrologie());
 	      _metrologie.setDescription(metrologie.getDescription());
+	      _metrologie.setPublished(metrologie.isPublished());
+
 
 	      return new ResponseEntity<>(metrologieRepository.save(_metrologie), HttpStatus.OK);
 	    } else {
@@ -85,4 +89,5 @@ public class MétrologieController {
 	      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
 	  }
+	 
 }
